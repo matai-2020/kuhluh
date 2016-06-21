@@ -1,7 +1,5 @@
 import request from 'superagent'
 
-//const GET_IMAGES = 'GET_IMAGES'
-
 export const UPDATE_IMAGES = 'UPDATE_IMAGES'
 
 export const REQUEST_IMAGES = 'REQUEST_IMAGES'
