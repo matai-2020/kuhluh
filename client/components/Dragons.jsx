@@ -1,20 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 const Dragons = (props) => (
-  <div>
-    {props.dragons.map( dragon => <div>{dragon.name}</div> )}
+  <div className='dragons'>
+    <button onClick={ () => {
+      props.requestImages('dragon')
+    }}>
+      Moar
+    </button>
+
+    <div className='dragon-collection'>
+      {props.dragons.map( (dragon) => <img key={dragon.imgUrl} className='dragon' src={dragon.imgUrl} /> )}
+    </div>
   </div>
 )
 
 
 const mapStateToProps = (state) => {
-  return state
+  return {
+    dragons: state.dragons
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
+  return {
+    requestImages: (query) => { actions.requestImages(query)(dispatch) }
+  }
 
 }
+
 
 export default connect(
   mapStateToProps,
