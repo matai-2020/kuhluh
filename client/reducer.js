@@ -15,9 +15,6 @@ const reducer = (state = INITIAL_STATE, action) => {
       console.log('newState', newState)
 
       return newState
-      //return Object.assign({}, state, {
-        //dragons: action.images.map( url => {imgUrl: url})
-      //})
 
     default: 
       return state
