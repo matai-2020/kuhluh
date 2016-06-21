@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestImages: (query) => { actions.requestImages(query)(dispatch) }
+    requestImages: (query) => { dispatch(actions.requestImages(query)) }
   }
 
 }
