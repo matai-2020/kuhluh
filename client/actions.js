@@ -2,7 +2,6 @@ import request from 'superagent'
 
 export const UPDATE_IMAGES = 'UPDATE_IMAGES'
 
-export const REQUEST_IMAGES = 'REQUEST_IMAGES'
 export const requestImages = (query) => {
   return (dispatch) => {
     console.log('getting dragons')
