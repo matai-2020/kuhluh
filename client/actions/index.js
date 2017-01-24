@@ -10,7 +10,7 @@ export const getNewColor = () => {
     const target = `http://localhost:3000/color`
 
     request.get(target, (err, data) => {
-      if (err) console.error(err)
+      if (err) return console.error(err)
 
       const color = JSON.parse(data.text).name
       console.log('color:', color)
