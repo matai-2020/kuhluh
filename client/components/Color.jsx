@@ -24,7 +24,7 @@ const Color = props => {
       <p>
         <a href='#' onClick={() => {
           props.getNewColor()
-        }}>Get anuhthuh kuhluh</a>
+        }}>Get uhnuhthuh kuhluh</a>
       </p>
       {props.gettingNewColor ? ColorLoading : ColorLoaded}
     </div>
