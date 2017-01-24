@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var cors = require('cors')
 var path = require('path')
 
-var things = require('./routes/things')
+var colors = require('./routes/colors')
 
 var PORT = process.env.PORT || 3000
 var app = express()
@@ -11,7 +11,7 @@ var app = express()
 app.use(bodyParser.json())
 app.use(cors({origin: 'http://localhost:8080'}))
 app.use(express.static(path.join(__dirname, 'static')))
-app.use('/things', things)
+app.use('/color', colors)
 
 app.listen(PORT, function () {
   console.log('Listening on port', PORT)

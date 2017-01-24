@@ -1,18 +1,20 @@
 const INITIAL_STATE = {
-  dragons: [{
-    imgUrl: 'https://pixabay.com/get/eb36b9062bf51c2ad65a5854e44b4e9fe373e1c818b5174791f8c87ba5ee_640.jpg'
-  }]
+  color: '',
+  gettingNewColor: false
 }
 
 const reducer = (state = INITIAL_STATE, action) => {
+  const newState = Object.assign({}, state)
+
   switch (action.type) {
-    case 'UPDATE_IMAGES':
-      const newState = Object.assign({}, state, {
-        dragons: action.imgUrls.map((url) => {
-          return {imgUrl: url}
-        })
-      })
-      console.log('newState', newState)
+    case 'UPDATE_COLOR':
+      newState.color = action.color
+      newState.gettingNewColor = false
+      return newState
+
+    case 'REQUESTING_COLOR':
+      newState.color = ''
+      newState.gettingNewColor = true
       return newState
 
     default:

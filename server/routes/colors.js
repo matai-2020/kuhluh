@@ -4,7 +4,10 @@ var router = express.Router()
 var db = require('../db')
 
 router.get('/', function (req, res) {
-  res.json(db.getThings())
+  db.getColor((err, color) => {
+    // Warning: this error handling is rubbish
+    if (!err) res.json(color)
+  })
 })
 
 module.exports = router

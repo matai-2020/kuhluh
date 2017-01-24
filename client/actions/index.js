@@ -1,29 +1,34 @@
 import request from 'superagent'
 
-export const UPDATE_IMAGES = 'UPDATE_IMAGES'
+export const UPDATE_COLOR = 'UPDATE_COLOR'
+export const REQUESTING_COLOR = 'REQUESTING_COLOR'
 
-export const requestImages = (query) => {
-  return (dispatch) => {
-    console.log('getting dragons')
-    const target = `https://pixabay.com/api/?q=${query}&key=2789043-ba8806a0b1d6fd8a1d355061d`
+export const getNewColor = () => {
+  return dispatch => {
+    dispatch(requestingColor())
+    console.log('getting new color')
+    const target = `http://localhost:3000/color`
 
     request.get(target, (err, data) => {
       if (err) console.error(err)
 
-      const dragonImgUrls = JSON.parse(data.text).hits.map(hit => {
-        return hit.webformatURL
-      })
+      const color = JSON.parse(data.text).name
+      console.log('color:', color)
 
-      console.log('dragons', dragonImgUrls)
-
-      dispatch(receiveImages(dragonImgUrls))
+      dispatch(receivingColor(color))
     })
   }
 }
 
-export const receiveImages = (imgUrls) => {
+export const requestingColor = () => {
   return {
-    type: UPDATE_IMAGES,
-    imgUrls
+    type: REQUESTING_COLOR
+  }
+}
+
+export const receivingColor = color => {
+  return {
+    type: UPDATE_COLOR,
+    color
   }
 }

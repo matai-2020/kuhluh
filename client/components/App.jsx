@@ -1,13 +1,12 @@
 import React from 'react'
-import Dragons from './Dragons'
 
-export default React.createClass({
-  render () {
-    return (
-      <div>
-        <h1>Some Dragons</h1>
-        <Dragons />
-      </div>
-    )
-  }
-})
+import ColorViewer from '../containers/ColorViewer'
+
+const App = () => (
+  <div>
+    <h1>Kuhluhs</h1>
+    <ColorViewer />
+  </div>
+)
+
+export default App
