@@ -10,15 +10,14 @@ export const requestImages = (query) => {
     request.get(target, (err, data) => {
       if (err) console.error(err)
 
-      const dragonImgUrls = JSON.parse(data.text).hits.map( hit => {
+      const dragonImgUrls = JSON.parse(data.text).hits.map(hit => {
         return hit.webformatURL
       })
 
       console.log('dragons', dragonImgUrls)
-      
+
       dispatch(receiveImages(dragonImgUrls))
     })
-
   }
 }
 
@@ -28,6 +27,3 @@ export const receiveImages = (imgUrls) => {
     imgUrls
   }
 }
-
-
-
