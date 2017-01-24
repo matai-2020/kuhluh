@@ -1,6 +1,4 @@
-# Captiond
+# Kuhluhs
 
-> Photos and their ... captions
-
-An app to help you come to terms with async action creators with React/Redux.
+An illustration of an async action creator.
 
