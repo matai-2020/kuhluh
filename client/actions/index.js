@@ -1,5 +1,7 @@
 import request from 'superagent'
 
+export const ADD_COLOR = 'ADD_COLOR'
+export const ADD_NEW_COLOR = 'ADD_NEW_COLOR'
 export const UPDATE_COLOR = 'UPDATE_COLOR'
 export const REQUESTING_COLOR = 'REQUESTING_COLOR'
 
@@ -29,6 +31,19 @@ export const requestingColor = () => {
 export const receivingColor = color => {
   return {
     type: UPDATE_COLOR,
+    color
+  }
+}
+
+export const toggleColorForm = () => {
+  return {
+    type: ADD_COLOR
+  }
+}
+
+export const addNewColor = color => {
+  return {
+    type: ADD_NEW_COLOR,
     color
   }
 }
