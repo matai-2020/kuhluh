@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { getNewColor } from '../actions'
 import Color from '../components/Color'
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ color, isWaitingOnApi }) => {
   return {
-    color: state.color,
-    gettingNewColor: state.gettingNewColor
+    color,
+    isWaitingOnApi
   }
 }
 

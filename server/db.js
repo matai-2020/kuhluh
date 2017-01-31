@@ -1,4 +1,5 @@
 module.exports = {
+  addColor,
   getColors,
   getColor
 }
@@ -10,18 +11,18 @@ var colors = [{
   id: 2,
   name: 'DarkSalmon'
 }, {
-  id: 3,
-  name: 'DarkSlateGray'
-}, {
-  id: 4,
-  name: 'DarkOrchid'
-}, {
-  id: 5,
-  name: 'DarkCyan'
-}, {
-  id: 6,
-  name: 'FireBrick'
-}, {
+//   id: 3,
+//   name: 'DarkSlateGray'
+// }, {
+//   id: 4,
+//   name: 'DarkOrchid'
+// }, {
+//   id: 5,
+//   name: 'DarkCyan'
+// }, {
+//   id: 6,
+//   name: 'FireBrick'
+// }, {
   id: 7,
   name: 'Goldenrod'
 }]
@@ -40,4 +41,15 @@ function getColor (callback) {
 function getRandom (max) {
   const random = Math.random() * max
   return Math.floor(random)
+}
+
+function addColor (color, callback) {
+  const newColor = {
+    id: colors.length,
+    name: color
+  }
+  setTimeout(() => {
+    colors.push(newColor)
+    callback(null)
+  }, 3000)
 }

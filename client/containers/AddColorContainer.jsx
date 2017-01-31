@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { toggleColorForm, addNewColor } from '../actions'
 import AddColor from '../components/AddColor'
 
-const mapStateToProps = ({ isColorFormVisible }) => {
+const mapStateToProps = ({ isColorFormVisible, isWaitingOnApi }) => {
   return {
-    isColorFormVisible
+    isColorFormVisible,
+    isWaitingOnApi
   }
 }
 

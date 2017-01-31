@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
   color: '',
-  gettingNewColor: false,
+  isWaitingOnApi: false,
   isColorFormVisible: false
 }
 
@@ -8,8 +8,8 @@ const reducer = (state = INITIAL_STATE, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
-    case 'ADD_COLOR':
-      newState.isColorFormVisible = true
+    case 'TOGGLE_COLOR':
+      newState.isColorFormVisible = !newState.isColorFormVisible
       return newState
 
     case 'ADD_NEW_COLOR':
@@ -17,14 +17,23 @@ const reducer = (state = INITIAL_STATE, action) => {
       newState.color = action.color
       return newState
 
+    case 'SAVING_NEW_COLOR':
+      newState.isWaitingOnApi = true
+      return newState
+
+    case 'SAVED_NEW_COLOR':
+      newState.isWaitingOnApi = false
+      newState.color = action.color
+      return newState
+
     case 'UPDATE_COLOR':
       newState.color = action.color
-      newState.gettingNewColor = false
+      newState.isWaitingOnApi = false
       return newState
 
     case 'REQUESTING_COLOR':
       newState.color = ''
-      newState.gettingNewColor = true
+      newState.isWaitingOnApi = true
       return newState
 
     default:
