@@ -23344,10 +23344,13 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var mapStateToProps = function mapStateToProps(state) {
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  var color = _ref.color,
+	      isWaitingOnApi = _ref.isWaitingOnApi;
+	
 	  return {
-	    color: state.color,
-	    gettingNewColor: state.gettingNewColor
+	    color: color,
+	    isWaitingOnApi: isWaitingOnApi
 	  };
 	};
 	
@@ -23370,7 +23373,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addNewColor = exports.toggleColorForm = exports.receivingColor = exports.requestingColor = exports.getNewColor = exports.REQUESTING_COLOR = exports.UPDATE_COLOR = exports.ADD_NEW_COLOR = exports.ADD_COLOR = undefined;
+	exports.savedNewColor = exports.savingNewColor = exports.addNewColor = exports.toggleColorForm = exports.receivingColor = exports.requestingColor = exports.getNewColor = exports.SAVED_NEW_COLOR = exports.SAVING_NEW_COLOR = exports.REQUESTING_COLOR = exports.UPDATE_COLOR = exports.ADD_NEW_COLOR = exports.TOGGLE_COLOR = undefined;
 	
 	var _superagent = __webpack_require__(212);
 	
@@ -23378,10 +23381,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var ADD_COLOR = exports.ADD_COLOR = 'ADD_COLOR';
+	var TOGGLE_COLOR = exports.TOGGLE_COLOR = 'TOGGLE_COLOR';
 	var ADD_NEW_COLOR = exports.ADD_NEW_COLOR = 'ADD_NEW_COLOR';
 	var UPDATE_COLOR = exports.UPDATE_COLOR = 'UPDATE_COLOR';
 	var REQUESTING_COLOR = exports.REQUESTING_COLOR = 'REQUESTING_COLOR';
+	var SAVING_NEW_COLOR = exports.SAVING_NEW_COLOR = 'SAVING_NEW_COLOR';
+	var SAVED_NEW_COLOR = exports.SAVED_NEW_COLOR = 'SAVED_NEW_COLOR';
 	
 	var getNewColor = exports.getNewColor = function getNewColor() {
 	  return function (dispatch) {
@@ -23415,13 +23420,33 @@
 	
 	var toggleColorForm = exports.toggleColorForm = function toggleColorForm() {
 	  return {
-	    type: ADD_COLOR
+	    type: TOGGLE_COLOR
 	  };
 	};
 	
 	var addNewColor = exports.addNewColor = function addNewColor(color) {
+	  return function (dispatch) {
+	    dispatch(savingNewColor());
+	    console.log('saving new color');
+	    var target = 'http://localhost:3000/color';
+	
+	    _superagent2.default.post(target).send({ color: color }).end(function (err, res) {
+	      if (err) return console.error(err);
+	      dispatch(toggleColorForm());
+	      dispatch(savedNewColor(color));
+	    });
+	  };
+	};
+	
+	var savingNewColor = exports.savingNewColor = function savingNewColor() {
 	  return {
-	    type: ADD_NEW_COLOR,
+	    type: SAVING_NEW_COLOR
+	  };
+	};
+	
+	var savedNewColor = exports.savedNewColor = function savedNewColor(color) {
+	  return {
+	    type: SAVED_NEW_COLOR,
 	    color: color
 	  };
 	};
@@ -25060,7 +25085,7 @@
 	  );
 	
 	  var specifier = props.color ? 'uhnuhthuh' : 'uh';
-	  var linkText = props.gettingNewColor ? '' : 'Get ' + specifier + ' kuhluh';
+	  var linkText = props.isWaitingOnApi ? '' : 'Get ' + specifier + ' kuhluh';
 	
 	  return _react2.default.createElement(
 	    'div',
@@ -25076,8 +25101,8 @@
 	        linkText
 	      )
 	    ),
-	    props.gettingNewColor ? ColorLoading : ColorLoaded,
-	    _react2.default.createElement(_AddColorContainer2.default, null)
+	    _react2.default.createElement(_AddColorContainer2.default, null),
+	    props.isWaitingOnApi ? ColorLoading : ColorLoaded
 	  );
 	};
 	
@@ -25104,10 +25129,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var mapStateToProps = function mapStateToProps(_ref) {
-	  var isColorFormVisible = _ref.isColorFormVisible;
+	  var isColorFormVisible = _ref.isColorFormVisible,
+	      isWaitingOnApi = _ref.isWaitingOnApi;
 	
 	  return {
-	    isColorFormVisible: isColorFormVisible
+	    isColorFormVisible: isColorFormVisible,
+	    isWaitingOnApi: isWaitingOnApi
 	  };
 	};
 	
@@ -25168,10 +25195,12 @@
 	    )
 	  );
 	
+	  var control = props.isColorFormVisible ? form : link;
+	
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'add-color' },
-	    props.isColorFormVisible ? form : link
+	    props.isWaitingOnApi ? null : control
 	  );
 	};
 	
@@ -25188,7 +25217,7 @@
 	});
 	var INITIAL_STATE = {
 	  color: '',
-	  gettingNewColor: false,
+	  isWaitingOnApi: false,
 	  isColorFormVisible: false
 	};
 	
@@ -25199,8 +25228,8 @@
 	  var newState = Object.assign({}, state);
 	
 	  switch (action.type) {
-	    case 'ADD_COLOR':
-	      newState.isColorFormVisible = true;
+	    case 'TOGGLE_COLOR':
+	      newState.isColorFormVisible = !newState.isColorFormVisible;
 	      return newState;
 	
 	    case 'ADD_NEW_COLOR':
@@ -25208,14 +25237,23 @@
 	      newState.color = action.color;
 	      return newState;
 	
+	    case 'SAVING_NEW_COLOR':
+	      newState.isWaitingOnApi = true;
+	      return newState;
+	
+	    case 'SAVED_NEW_COLOR':
+	      newState.isWaitingOnApi = false;
+	      newState.color = action.color;
+	      return newState;
+	
 	    case 'UPDATE_COLOR':
 	      newState.color = action.color;
-	      newState.gettingNewColor = false;
+	      newState.isWaitingOnApi = false;
 	      return newState;
 	
 	    case 'REQUESTING_COLOR':
 	      newState.color = '';
-	      newState.gettingNewColor = true;
+	      newState.isWaitingOnApi = true;
 	      return newState;
 	
 	    default:

@@ -15,9 +15,11 @@ const AddColor = props => {
     </p>
   )
 
+  const control = props.isColorFormVisible ? form : link
+
   return (
     <div className='add-color'>
-      {props.isColorFormVisible ? form : link}
+      {props.isWaitingOnApi ? null : control}
     </div>
   )
 }

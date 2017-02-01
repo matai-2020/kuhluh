@@ -20,7 +20,7 @@ const Color = props => {
   )
 
   const specifier = props.color ? 'uhnuhthuh' : 'uh'
-  const linkText = props.gettingNewColor ? '' : `Get ${specifier} kuhluh`
+  const linkText = props.isWaitingOnApi ? '' : `Get ${specifier} kuhluh`
 
   return (
     <div className='color'>
@@ -29,8 +29,8 @@ const Color = props => {
           props.getNewColor()
         }}>{linkText}</a>
       </p>
-      {props.gettingNewColor ? ColorLoading : ColorLoaded}
       <AddColorContainer />
+      {props.isWaitingOnApi ? ColorLoading : ColorLoaded}
     </div>
   )
 }

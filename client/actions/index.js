@@ -1,9 +1,11 @@
 import request from 'superagent'
 
-export const ADD_COLOR = 'ADD_COLOR'
+export const TOGGLE_COLOR = 'TOGGLE_COLOR'
 export const ADD_NEW_COLOR = 'ADD_NEW_COLOR'
 export const UPDATE_COLOR = 'UPDATE_COLOR'
 export const REQUESTING_COLOR = 'REQUESTING_COLOR'
+export const SAVING_NEW_COLOR = 'SAVING_NEW_COLOR'
+export const SAVED_NEW_COLOR = 'SAVED_NEW_COLOR'
 
 export const getNewColor = () => {
   return dispatch => {
@@ -37,13 +39,35 @@ export const receivingColor = color => {
 
 export const toggleColorForm = () => {
   return {
-    type: ADD_COLOR
+    type: TOGGLE_COLOR
   }
 }
 
 export const addNewColor = color => {
+  return dispatch => {
+    dispatch(savingNewColor())
+    console.log('saving new color')
+    const target = `http://localhost:3000/color`
+
+    request.post(target)
+      .send({ color })
+      .end((err, res) => {
+        if (err) return console.error(err)
+        dispatch(toggleColorForm())
+        dispatch(savedNewColor(color))
+      })
+  }
+}
+
+export const savingNewColor = () => {
   return {
-    type: ADD_NEW_COLOR,
+    type: SAVING_NEW_COLOR
+  }
+}
+
+export const savedNewColor = color => {
+  return {
+    type: SAVED_NEW_COLOR,
     color
   }
 }
