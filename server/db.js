@@ -4,6 +4,8 @@ module.exports = {
   getColor
 }
 
+const waitTime = 2000
+
 var colors = [{
   id: 1,
   name: 'DarkKhaki'
@@ -35,7 +37,7 @@ function getColor (callback) {
   const index = getRandom(colors.length)
   setTimeout(() => {
     callback(null, colors[index])
-  }, 3000)
+  }, waitTime)
 }
 
 function getRandom (max) {
@@ -45,11 +47,11 @@ function getRandom (max) {
 
 function addColor (color, callback) {
   const newColor = {
-    id: colors.length,
+    id: ++colors.length,
     name: color
   }
   setTimeout(() => {
     colors.push(newColor)
     callback(null)
-  }, 3000)
+  }, waitTime)
 }
