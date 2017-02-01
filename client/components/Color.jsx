@@ -1,5 +1,7 @@
 import React from 'react'
 
+import AddColorContainer from '../containers/AddColorContainer'
+
 const ColorLoading = (
   <div>
     <h2>Loading duh kuhluh ...</h2>
@@ -28,6 +30,7 @@ const Color = props => {
         }}>{linkText}</a>
       </p>
       {props.gettingNewColor ? ColorLoading : ColorLoaded}
+      <AddColorContainer />
     </div>
   )
 }
