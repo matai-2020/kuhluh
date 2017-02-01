@@ -10,7 +10,7 @@ After cloning this repo:
 npm install
 ```
 
-To run the server:
+### To run the server:
 
 ```sh
 npm run build
@@ -19,7 +19,7 @@ npm run server
 
 Then go to [http://localhost:3000](http://localhost:3000)
 
-Or, to run `webpack-dev-server`:
+### Or, to run `webpack-dev-server`:
 
 ```sh
 npm start
