@@ -13,18 +13,18 @@ var colors = [{
   id: 2,
   name: 'DarkSalmon'
 }, {
-//   id: 3,
-//   name: 'DarkSlateGray'
-// }, {
-//   id: 4,
-//   name: 'DarkOrchid'
-// }, {
-//   id: 5,
-//   name: 'DarkCyan'
-// }, {
-//   id: 6,
-//   name: 'FireBrick'
-// }, {
+  id: 3,
+  name: 'DarkSlateGray'
+}, {
+  id: 4,
+  name: 'DarkOrchid'
+}, {
+  id: 5,
+  name: 'DarkCyan'
+}, {
+  id: 6,
+  name: 'FireBrick'
+}, {
   id: 7,
   name: 'Goldenrod'
 }]
