@@ -13,10 +13,11 @@ npm install
 To run the server:
 
 ```sh
+npm run build
 npm run server
 ```
 
-To run `webpack-dev-server`:
+Or, to run `webpack-dev-server`:
 
 ```sh
 npm start
