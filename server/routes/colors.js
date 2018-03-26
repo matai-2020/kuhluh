@@ -1,21 +1,22 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
 
-var db = require('../db')
+const db = require('../db')
 
-router.get('/', function (req, res) {
+const router = express.Router()
+
+router.get('/', (req, res) => {
   db.getColor((err, color) => {
-    // Warning: this error handling is rubbish
+    // TODO: this error handling is rubbish
     if (!err) res.json(color)
   })
 })
 
-router.get('/all', function (req, res) {
+router.get('/all', (req, res) => {
   const allColors = db.getColors()
   res.json(allColors)
 })
 
-router.post('/', function (req, res) {
+router.post('/', (req, res) => {
   const color = req.body.color
   db.addColor(color, (err) => {
     if (err) {

@@ -7,14 +7,14 @@ An illustration of an async action creator.
 After cloning this repo:
 
 ```sh
-npm install
+yarn
 ```
 
 ### To run the server:
 
 ```sh
-npm run build
-npm run server
+yarn build
+yarn server
 ```
 
 Then go to [http://localhost:3000](http://localhost:3000)
@@ -22,7 +22,7 @@ Then go to [http://localhost:3000](http://localhost:3000)
 ### Or, to run `webpack-dev-server`:
 
 ```sh
-npm start
+yarn start
 ```
 
 And go to [http://localhost:8080](http://localhost:8080)

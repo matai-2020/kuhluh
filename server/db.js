@@ -6,7 +6,7 @@ module.exports = {
 
 const waitTime = 2000
 
-var colors = [{
+const colors = [{
   id: 1,
   name: 'DarkKhaki'
 }, {

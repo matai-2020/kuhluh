@@ -1,18 +1,18 @@
-var express = require('express')
-var bodyParser = require('body-parser')
-var cors = require('cors')
-var path = require('path')
+const path = require('path')
 
-var colors = require('./routes/colors')
+const cors = require('cors')
+const express = require('express')
 
-var PORT = process.env.PORT || 3000
-var app = express()
+const colors = require('./routes/colors')
 
-app.use(bodyParser.json())
-app.use(cors({origin: 'http://localhost:8080'}))
-app.use(express.static(path.join(__dirname, 'static')))
-app.use('/color', colors)
+const server = express()
 
-app.listen(PORT, function () {
-  console.log('Listening on port', PORT)
-})
+// configuration
+server.use(express.json())
+server.use(cors({origin: 'http://localhost:8080'}))
+
+// routes
+server.use(express.static(path.join(__dirname, 'static')))
+server.use('/color', colors)
+
+module.exports = server
