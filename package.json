@@ -10,7 +10,7 @@
     "watch": "webpack --watch",
     "debug": "webpack && node --inspect server",
     "start": "webpack-dev-server --hot --inline --content-base server/static/",
-    "server": "webpack && nodemon server/server",
+    "server": "webpack && nodemon server",
     "test": "jest --watchAll"
   },
   "babel": {
