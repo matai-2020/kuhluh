@@ -47,7 +47,7 @@ function getRandom (max) {
 
 function addColor (color, callback) {
   const newColor = {
-    id: ++colors.length,
+    id: colors.length + 1,
     name: color
   }
   setTimeout(() => {
