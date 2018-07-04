@@ -10,15 +10,13 @@ export const SAVED_NEW_COLOR = 'SAVED_NEW_COLOR'
 export const getNewColor = () => {
   return dispatch => {
     dispatch(requestingColor())
-    console.log('getting new color')
     const target = `http://localhost:3000/color`
 
     request.get(target, (err, data) => {
+      // eslint-disable-next-line no-console
       if (err) return console.error(err)
 
       const color = JSON.parse(data.text).name
-      console.log('color:', color)
-
       dispatch(receivingColor(color))
     })
   }
@@ -46,12 +44,12 @@ export const toggleColorForm = () => {
 export const addNewColor = color => {
   return dispatch => {
     dispatch(savingNewColor())
-    console.log('saving new color')
     const target = `http://localhost:3000/color`
 
     request.post(target)
-      .send({ color })
+      .send({color})
       .end((err, res) => {
+        // eslint-disable-next-line no-console
         if (err) return console.error(err)
         dispatch(toggleColorForm())
         dispatch(savedNewColor(color))
