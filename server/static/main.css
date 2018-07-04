@@ -1,5 +1,17 @@
-.swatch {
-  width: 533px;
-  height: 300px;
+h1 {
+  font-family: sans-serif;
 }
 
+.waiting {
+  width: 300px;
+  /* height: 300px; */
+}
+
+.swatch {
+  width: 300px;
+  height: 80px;
+  color: white;
+  padding: 24px;
+  font: lighter x-large sans-serif;
+  box-sizing: border-box;
+}

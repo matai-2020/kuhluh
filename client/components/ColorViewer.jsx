@@ -9,17 +9,18 @@ const ColorLoading = (
   <div>
     <h2>Loading duh kuhluh ...</h2>
     <div>
-      <img src='/getting-color.gif' className='swatch' />
+      <img src='/getting-color.gif' className='waiting' />
     </div>
   </div>
 )
 
 const ColorViewer = props => {
   const ColorLoaded = (
-    <div>
-      <h2 style={{color: props.color}}>{props.color}</h2>
-      <div className='swatch' style={{backgroundColor: props.color}} />
-    </div>
+    <p>
+      <div className='swatch' style={{backgroundColor: props.color}}>
+        {props.color}
+      </div>
+    </p>
   )
 
   const specifier = props.color ? 'uhnuhthuh' : 'uh'
@@ -27,11 +28,7 @@ const ColorViewer = props => {
 
   return (
     <div className='color'>
-      <p>
-        <a href='#' onClick={() => {
-          props.getNewColor()
-        }}>{linkText}</a>
-      </p>
+      <p><a href='#' onClick={props.getNewColor}>{linkText}</a></p>
       <AddColor />
       {props.isWaitingOnApi ? ColorLoading : ColorLoaded}
     </div>
