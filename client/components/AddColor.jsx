@@ -1,4 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux'
+
+import {toggleColorForm, addNewColor} from '../actions'
 
 let colorName = null
 
@@ -24,4 +27,21 @@ const AddColor = props => {
   )
 }
 
-export default AddColor
+const mapStateToProps = ({isColorFormVisible, isWaitingOnApi}) => {
+  return {
+    isColorFormVisible,
+    isWaitingOnApi
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showColorForm: () => { dispatch(toggleColorForm()) },
+    addNewColor: newColor => { dispatch(addNewColor(newColor)) }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddColor)

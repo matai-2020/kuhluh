@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ColorViewer from '../containers/ColorViewer'
+import ColorViewer from './ColorViewer'
 
 const App = () => (
   <div>

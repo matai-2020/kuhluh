@@ -1,6 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
-import AddColorContainer from '../containers/AddColorContainer'
+import {getNewColor} from '../actions'
+
+import AddColor from './AddColor'
 
 const ColorLoading = (
   <div>
@@ -11,7 +14,7 @@ const ColorLoading = (
   </div>
 )
 
-const Color = props => {
+const ColorViewer = props => {
   const ColorLoaded = (
     <div>
       <h2 style={{color: props.color}}>{props.color}</h2>
@@ -29,10 +32,26 @@ const Color = props => {
           props.getNewColor()
         }}>{linkText}</a>
       </p>
-      <AddColorContainer />
+      <AddColor />
       {props.isWaitingOnApi ? ColorLoading : ColorLoaded}
     </div>
   )
 }
 
-export default Color
+const mapStateToProps = ({color, isWaitingOnApi}) => {
+  return {
+    color,
+    isWaitingOnApi
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getNewColor: () => { dispatch(getNewColor()) }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ColorViewer)
