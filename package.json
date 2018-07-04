@@ -8,7 +8,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "debug": "webpack && nodemon server",
+    "debug": "nodemon server & webpack --watch",
     "start": "webpack-dev-server --hot --inline --content-base server/static/",
     "server": "webpack && node server",
     "test": "jest --watchAll"
