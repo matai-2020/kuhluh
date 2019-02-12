@@ -1,45 +1,39 @@
 {
-  "name": "captiond",
+  "name": "kuhluh",
   "version": "0.1.0",
-  "description": "Photos and their captions",
+  "description": "Playing with kuhluhs",
   "main": "server/server.js",
+  "repository": "https://github.com/don-smith/kuhluh",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "start": "webpack-dev-server --hot --inline --content-base server/static/",
-    "server": "webpack && node-dev server/server",
-    "test": "ava --watch"
+    "start": "webpack --watch & node server/server",
+    "test": "jest"
   },
   "babel": {
     "presets": [
-      "es2015",
-      "react"
+      "@babel/preset-env",
+      "@babel/preset-react"
     ]
   },
-  "author": "EDA",
+  "author": "Don Smith <don@antiantonym.com>",
   "license": "ISC",
   "devDependencies": {
-    "ava": "^0.15.2",
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-polyfill": "^6.22.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
-    "enzyme": "^2.7.1",
-    "node-dev": "^3.1.3",
-    "react": "^15.4.2",
-    "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-redux": "^4.4.6",
-    "redux": "^3.6.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "jest": "^24.1.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
     "redux-thunk": "^2.2.0",
-    "superagent": "^2.3.0",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "superagent": "^4.1.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "body-parser": "^1.16.0",
-    "cors": "^2.8.1",
     "express": "^4.14.0"
   }
 }
