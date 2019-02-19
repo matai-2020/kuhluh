@@ -7,7 +7,7 @@
   "author": "Don Smith <don@antiantonym>",
   "license": "ISC",
   "scripts": {
-    "start": "webpack --watch & node server/server",
+    "start": "node server/index & webpack --watch",
     "test": "jest"
   },
   "jest": {
